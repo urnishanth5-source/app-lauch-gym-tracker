@@ -670,4 +670,25 @@
   }
 </style>
 
+
+<script>
+(() => {
+  const downloadUrl = "https://drive.google.com/drive/folders/1S1JECi4ApI2AjI2-hK8I41vPW2aq1pj0?usp=drive_link";
+  const whatsappNumber = "917010113277";
+  const openDownload = () => {
+    const phone = prompt("Enter your WhatsApp number so we can send you the GymNutrition APK:");
+    if (!phone) return;
+    const digits = phone.replace(/\\D/g, "");
+    if (digits.length < 10) { alert("Please enter a valid WhatsApp number."); return; }
+    const message = "GymNutrition APK request\\nWhatsApp number: +" + digits + "\\nPlease send me the APK."; 
+    window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank");
+  };
+  document.querySelectorAll('a').forEach(a => {
+    if ((a.textContent || "").toLowerCase().includes("download for android") || (a.textContent || "").toLowerCase().includes("download app")) {
+      a.href = "#"; a.removeAttribute("target"); a.removeAttribute("rel");
+      a.addEventListener("click", e => { e.preventDefault(); openDownload(); });
+    }
+  });
+})();
+</script>
 </body></html>
