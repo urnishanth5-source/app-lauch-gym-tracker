@@ -671,22 +671,109 @@
 </style>
 
 
+<style>
+  #downloadModal{display:none}
+  #downloadModal.is-open{display:flex}
+  #downloadModal .modal-panel{animation:downloadModalIn .2s ease-out}
+  @keyframes downloadModalIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+</style>
+
+<div id="downloadModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="downloadModalTitle">
+  <div class="modal-panel w-full max-w-md rounded-3xl border border-brand-border bg-brand-dark shadow-2xl p-6 sm:p-8 relative">
+    <button id="downloadModalClose" type="button" class="absolute right-4 top-4 w-10 h-10 rounded-full border border-brand-border bg-brand-card text-gray-300 hover:text-white hover:border-brand-green flex items-center justify-center" aria-label="Close">
+      <span class="text-2xl leading-none">×</span>
+    </button>
+    <div class="w-12 h-12 rounded-2xl bg-brand-green/10 border border-brand-green/20 text-brand-green flex items-center justify-center mb-5">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 11.5a8 8 0 0 1-8 8 8.5 8.5 0 0 1-3.8-.9L4 20l1.4-3.8A8.5 8.5 0 0 1 4 12a8 8 0 1 1 16-.5Z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2 id="downloadModalTitle" class="text-2xl font-extrabold mb-2">Get GymNutrition APK</h2>
+    <p class="text-sm text-gray-400 leading-relaxed mb-6">Enter your WhatsApp number. We'll open WhatsApp with a ready-to-send APK request.</p>
+
+    <form id="downloadForm" class="space-y-4">
+      <label for="downloadPhone" class="block text-sm font-bold text-gray-200">WhatsApp number</label>
+      <div class="flex gap-2">
+        <div class="w-20 shrink-0 rounded-xl border border-brand-border bg-brand-card flex items-center justify-center text-sm font-bold text-gray-200">+91</div>
+        <input id="downloadPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" placeholder="7010113277" class="min-w-0 flex-1 rounded-xl border-brand-border bg-brand-card text-white placeholder-gray-600 focus:border-brand-green focus:ring-brand-green" required>
+      </div>
+      <p id="downloadError" class="hidden text-xs text-red-400">Enter a valid 10-digit Indian WhatsApp number.</p>
+      <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-green text-black font-extrabold hover:bg-brand-neon transition-colors">
+        Request APK on WhatsApp →
+      </button>
+    </form>
+    <p class="mt-4 text-[11px] text-gray-500 text-center">Your number is only used to process your APK request.</p>
+  </div>
+</div>
+
 <script>
 (() => {
-  const downloadUrl = "https://drive.google.com/drive/folders/1S1JECi4ApI2AjI2-hK8I41vPW2aq1pj0?usp=drive_link";
-  const whatsappNumber = "917010113277";
-  const openDownload = () => {
-    const phone = prompt("Enter your WhatsApp number so we can send you the GymNutrition APK:");
-    if (!phone) return;
-    const digits = phone.replace(/\\D/g, "");
-    if (digits.length < 10) { alert("Please enter a valid WhatsApp number."); return; }
-    const message = "GymNutrition APK request\\nWhatsApp number: +" + digits + "\\nPlease send me the APK."; 
-    window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank");
+  const modal = document.getElementById('downloadModal');
+  const closeButton = document.getElementById('downloadModalClose');
+  const form = document.getElementById('downloadForm');
+  const phoneInput = document.getElementById('downloadPhone');
+  const error = document.getElementById('downloadError');
+  const ownerWhatsApp = '917010113277';
+
+  if (!modal || !closeButton || !form || !phoneInput) return;
+
+  const openModal = (event) => {
+    if (event) event.preventDefault();
+    modal.classList.add('is-open');
+    document.body.classList.add('overflow-hidden');
+    error.classList.add('hidden');
+    setTimeout(() => phoneInput.focus(), 50);
   };
-  document.querySelectorAll('a').forEach(a => {
-    if ((a.textContent || "").toLowerCase().includes("download for android") || (a.textContent || "").toLowerCase().includes("download app")) {
-      a.href = "#"; a.removeAttribute("target"); a.removeAttribute("rel");
-      a.addEventListener("click", e => { e.preventDefault(); openDownload(); });
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  closeButton.addEventListener('click', closeModal);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  phoneInput.addEventListener('input', () => {
+    phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+    error.classList.add('hidden');
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const digits = phoneInput.value.replace(/\D/g, '');
+
+    if (digits.length !== 10 || !/^[6-9]\d{9}$/.test(digits)) {
+      error.classList.remove('hidden');
+      phoneInput.focus();
+      return;
+    }
+
+    const message =
+      'GymNutrition APK request\n' +
+      'Customer WhatsApp: +91 ' + digits + '\n' +
+      'Please send me the GymNutrition APK.';
+
+    const url = 'https://wa.me/' + ownerWhatsApp + '?text=' + encodeURIComponent(message);
+    window.location.href = url;
+  });
+
+  document.querySelectorAll('a').forEach((link) => {
+    const text = (link.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    if (
+      text === 'download' ||
+      text.includes('download app') ||
+      text.includes('download for android')
+    ) {
+      link.href = '#';
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+      link.addEventListener('click', openModal);
     }
   });
 })();
