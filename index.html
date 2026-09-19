@@ -1,0 +1,673 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GymNutrition - Fuel Your Goals | 100% Free Nutrition &amp; Gym Tracker</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#080c0a',
+              dark: '#0e1411',
+              card: '#131b17',
+              border: '#1f2d26',
+              green: '#22e269',
+              greenHover: '#1dc45b',
+              neon: '#25f472',
+              muted: '#7a8b82',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            handwriting: ['"Caveat"', 'cursive'],
+          },
+          boxShadow: {
+            'glow-sm': '0 0 20px -5px rgba(34, 226, 105, 0.25)',
+            'glow-lg': '0 0 50px -10px rgba(34, 226, 105, 0.35)',
+            'phone': '0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 45px -5px rgba(34, 226, 105, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom CSS Styles -->
+<style data-purpose="custom-decorations">
+    /* Subtle radial glow background utilities */
+    .bg-radial-gradient {
+      background: radial-gradient(circle at 50% 20%, rgba(34, 226, 105, 0.08) 0%, rgba(8, 12, 10, 0) 70%);
+    }
+    .bg-card-gradient {
+      background: linear-gradient(180deg, #16201b 0%, #111814 100%);
+    }
+    .phone-border {
+      box-shadow: inset 0 0 0 2px #263830, 0 0 0 8px #0f1613, 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+    }
+  </style>
+<!-- END: Custom CSS Styles -->
+</head>
+<body id="top" class="bg-brand-black text-white font-sans antialiased selection:bg-brand-green selection:text-black min-h-screen relative overflow-x-hidden">
+<!-- Ambient background glow overlays -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-radial-gradient pointer-events-none -z-10"></div>
+<div class="absolute top-80 right-[-150px] w-[500px] h-[500px] bg-brand-green/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="absolute top-[1600px] left-[-150px] w-[600px] h-[600px] bg-brand-green/5 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-brand-black/80 backdrop-blur-xl border-b border-brand-border/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3" aria-label="GymNutrition home">
+      <div class="w-9 h-9 rounded-xl bg-brand-card border border-brand-border flex items-center justify-center text-brand-green">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-1 11H4V8h1v8zm15-11h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-1 11h-1V8h1v8zM8 11h8v2H8z"></path>
+        </svg>
+      </div>
+      <div>
+        <span class="text-lg sm:text-xl font-extrabold tracking-tight block leading-none">Gym<span class="text-brand-green">Nutrition</span></span>
+        <span class="text-[7px] sm:text-[8px] font-bold tracking-[0.25em] text-brand-muted uppercase block mt-1">Fuel Your Goals</span>
+      </div>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-300">
+      <a class="hover:text-brand-green transition-colors" href="#features">Features</a>
+      <a class="hover:text-brand-green transition-colors" href="#goals">Goals</a>
+      <a class="hover:text-brand-green transition-colors" href="#download">Download</a>
+      <a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-green text-black font-extrabold hover:bg-brand-neon transition-all" href="https://drive.google.com/drive/folders/1S1JECi4ApI2AjI2-hK8I41vPW2aq1pj0?usp=drive_link" target="_blank" rel="noopener noreferrer">
+        Download App
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <button id="menuButton" type="button" class="md:hidden w-11 h-11 rounded-xl border border-brand-border bg-brand-card text-white flex items-center justify-center" aria-label="Open menu" aria-expanded="false">
+      <svg id="menuOpenIcon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+      </svg>
+      <svg id="menuCloseIcon" class="hidden w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden border-t border-brand-border/60 bg-brand-dark/95 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
+      <a class="mobile-nav-link rounded-xl px-4 py-3 hover:bg-brand-card hover:text-brand-green" href="#features">Features</a>
+      <a class="mobile-nav-link rounded-xl px-4 py-3 hover:bg-brand-card hover:text-brand-green" href="#goals">Goals</a>
+      <a class="mobile-nav-link rounded-xl px-4 py-3 hover:bg-brand-card hover:text-brand-green" href="#download">Download</a>
+      <a class="rounded-xl px-4 py-3 bg-brand-green text-black font-extrabold text-center mt-2" href="https://drive.google.com/drive/folders/1S1JECi4ApI2AjI2-hK8I41vPW2aq1pj0?usp=drive_link" target="_blank" rel="noopener noreferrer">Download App →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative z-30">
+  <div class="flex items-center gap-3.5">
+    <div class="w-10 h-10 rounded-xl bg-brand-card border border-brand-border flex items-center justify-center text-brand-green">
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+        <path d="M6 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-1 11H4V8h1v8zm15-11h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-1 11h-1V8h1v8zM8 11h8v2H8z"></path>
+      </svg>
+    </div>
+    <div>
+      <span class="text-xl font-extrabold tracking-tight block leading-none">Gym<span class="text-brand-green">Nutrition</span></span>
+      <span class="text-[8px] font-bold tracking-[0.25em] text-brand-muted uppercase block mt-1">Fuel Your Goals</span>
+    </div>
+  </div>
+</header><main>
+<!-- BEGIN: Hero Section -->
+<section aria-label="Hero Section" class="relative pb-20 md:py-24 lg:py-28 overflow-hidden py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Hero Left Column: Copy & CTAs -->
+<div class="lg:col-span-7 flex flex-col items-start text-left z-10">
+<!-- Eyebrow Badge -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-card border border-brand-border/80 text-brand-green text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+              Your Nutrition Partner
+            </div>
+<!-- Main Heading -->
+<h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight uppercase leading-[1.08] mb-6">
+              Eat Smarter.<br>
+              Train Harder.<br>
+<span class="text-brand-green drop-shadow-[0_0_25px_rgba(34,226,105,0.4)]">Get Stronger.</span>
+</h1>
+<!-- Subtitle -->
+<p class="text-base sm:text-xl text-gray-400 max-w-xl font-normal leading-relaxed mb-8">
+              Track your food, calories, protein and gym progress all in one place. Simple. Powerful. 100% Free.
+            </p>
+<!-- Primary CTA Button -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-9">
+<a class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-green hover:bg-brand-neon text-black font-extrabold text-base tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 shadow-glow-lg hover:shadow-glow-lg active:scale-95 group" href="#download">
+<!-- Android Icon -->
+<svg class="w-6 h-6 fill-black" viewBox="0 0 24 24">
+<path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9996.4482.9996.9993.0001.5511-.4486.9997-.9996.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4144 13.8533 8.125 12 8.125s-3.5902.2894-5.1368.8247L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.152 4.5676l1.9972 3.4592C2.6889 10.967 0 14.1565 0 18.0002h24c0-3.8437-2.6889-7.0332-6.1185-8.6788"></path>
+</svg>
+<span class="">Download for Android</span>
+<svg class="w-5 h-5 text-black transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+<!-- Trust Badges Row -->
+<div class="flex flex-wrap items-center gap-6 sm:gap-8 text-xs sm:text-sm font-semibold text-gray-300">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center text-xs">✓</span>
+<span class="">100% Free</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-gray-800 text-gray-400 flex items-center justify-center text-xs">✕</span>
+<span class="">No Subscription</span>
+</div>
+<div class="flex items-center gap-2">
+<!-- Envelope / Card Icon -->
+<svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">No Credit Card</span>
+</div>
+</div>
+</div>
+<!-- Hero Right Column: High-Fidelity Mobile App Mockup -->
+<div class="lg:col-span-5 relative flex justify-center lg:justify-end" id="app-preview">
+<!-- Hand-drawn Style Annotation -->
+<div class="absolute -right-2 top-2/3 transform translate-y-4 hidden sm:flex flex-col items-start z-30 pointer-events-none select-none">
+<div class="font-handwriting text-2xl lg:text-3xl text-emerald-300 -rotate-6 leading-tight whitespace-nowrap drop-shadow-md">
+                Better<br>Food Choices<br>A Stronger You
+              </div>
+<!-- Curved hand-drawn arrow pointing to the phone -->
+<svg class="w-16 h-14 text-emerald-300 -mt-1 ml-4 rotate-12" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2" viewBox="0 0 60 50">
+<path d="M 45 5 C 30 25, 20 30, 8 38 M 8 38 L 18 32 M 8 38 L 14 44"></path>
+</svg>
+</div>
+<!-- Modern Phone Frame Container -->
+<div class="w-[320px] sm:w-[350px] bg-[#0c120f] rounded-[48px] p-4 phone-border relative shadow-phone">
+<!-- Top Speaker & Camera Notch -->
+<div class="w-36 h-5 bg-[#080d0a] rounded-full mx-auto mb-3 flex items-center justify-between px-3">
+<span class="w-2.5 h-2.5 rounded-full bg-[#1b2520]"></span>
+<span class="w-10 h-1 rounded-full bg-[#16201b]"></span>
+</div>
+<!-- Phone Screen Content -->
+<div class="bg-[#0f1713] rounded-[36px] p-4 border border-[#1b2821] text-white">
+<!-- In-App Header -->
+<div class="flex items-center justify-between mb-4">
+<div>
+<span class="text-[10px] text-gray-400 font-semibold tracking-wider block">Today, 18 Sep</span>
+<span class="text-sm font-extrabold tracking-tight">Gym<span class="text-brand-green">Nutrition</span></span>
+</div>
+<div class="w-7 h-7 rounded-full bg-[#1e2d25] border border-brand-border flex items-center justify-center text-xs text-brand-green">
+<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+</svg>
+</div>
+</div>
+<!-- Circular Calorie Tracker Card -->
+<div class="bg-[#141e19] border border-[#213228] rounded-2xl p-4 flex items-center justify-between mb-4 shadow-inner">
+<!-- Circular Gauge Simulation -->
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+<!-- Background Ring -->
+<path class="text-[#1e2f26]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<!-- Active Progress Ring -->
+<path class="text-brand-green stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="68, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute flex flex-col items-center justify-center text-center">
+<span class="text-base font-extrabold leading-tight">1,842</span>
+<span class="text-[9px] text-brand-muted font-medium">/ 2,900 kcal</span>
+</div>
+</div>
+<!-- Macros Breakdown -->
+<div class="flex flex-col gap-2 pl-2 text-xs font-semibold">
+<div class="flex items-center justify-between gap-3">
+<span class="text-gray-400">Protein</span>
+<span class="text-white font-bold">112 g</span>
+</div>
+<div class="w-24 bg-[#0a0f0d] h-1.5 rounded-full overflow-hidden">
+<div class="bg-brand-green h-full w-[70%]"></div>
+</div>
+<div class="flex items-center justify-between gap-3 pt-0.5">
+<span class="text-gray-400">Carbs</span>
+<span class="text-white font-bold">220 g</span>
+</div>
+<div class="w-24 bg-[#0a0f0d] h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-400 h-full w-[60%]"></div>
+</div>
+<div class="flex items-center justify-between gap-3 pt-0.5">
+<span class="text-gray-400">Fats</span>
+<span class="text-white font-bold">56 g</span>
+</div>
+<div class="w-24 bg-[#0a0f0d] h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-400 h-full w-[45%]"></div>
+</div>
+</div>
+</div>
+<!-- Quick Action Buttons -->
+<div class="grid grid-cols-3 gap-2 mb-4">
+<div class="bg-[#141f1a] hover:bg-[#192721] p-2.5 rounded-xl flex flex-col items-center text-center border border-[#1e2d26] transition-colors">
+<span class="text-brand-green mb-1">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"></path></svg>
+</span>
+<span class="text-[10px] font-bold text-gray-200">Add Food</span>
+</div>
+<div class="bg-[#141f1a] hover:bg-[#192721] p-2.5 rounded-xl flex flex-col items-center text-center border border-[#1e2d26] transition-colors">
+<span class="text-brand-green mb-1">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"></path></svg>
+</span>
+<span class="text-[10px] font-bold text-gray-200">Progress</span>
+</div>
+<div class="bg-[#141f1a] hover:bg-[#192721] p-2.5 rounded-xl flex flex-col items-center text-center border border-[#1e2d26] transition-colors">
+<span class="text-brand-green mb-1">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5z"></path></svg>
+</span>
+<span class="text-[10px] font-bold text-gray-200">AI Assistant</span>
+</div>
+</div>
+<!-- Today's Meals Section -->
+<div>
+<div class="flex items-center justify-between mb-2 px-1">
+<span class="text-xs font-bold text-white uppercase tracking-wider">Today's Meals</span>
+<span class="text-[11px] font-semibold text-brand-green cursor-pointer">See all</span>
+</div>
+<div class="space-y-2">
+<!-- Meal Item 1 -->
+<div class="flex items-center justify-between p-2 rounded-xl bg-[#121a16] border border-[#1b2721]">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-xs">🥣</div>
+<div>
+<div class="text-[11px] font-bold leading-tight">Breakfast</div>
+<div class="text-[9px] text-gray-400">Oats, Banana, Whey</div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[11px] font-bold block text-white leading-tight">420</span>
+<span class="text-[8px] text-gray-400">kcal</span>
+</div>
+</div>
+<!-- Meal Item 2 -->
+<div class="flex items-center justify-between p-2 rounded-xl bg-[#121a16] border border-[#1b2721]">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs">🥗</div>
+<div>
+<div class="text-[11px] font-bold leading-tight">Lunch</div>
+<div class="text-[9px] text-gray-400">Chicken, Rice, Veggies</div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[11px] font-bold block text-white leading-tight">650</span>
+<span class="text-[8px] text-gray-400">kcal</span>
+</div>
+</div>
+<!-- Meal Item 3 -->
+<div class="flex items-center justify-between p-2 rounded-xl bg-[#121a16] border border-[#1b2721]">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center text-xs">🍳</div>
+<div>
+<div class="text-[11px] font-bold leading-tight">Dinner</div>
+<div class="text-[9px] text-gray-400">Eggs, Rice, Avocado</div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[11px] font-bold block text-white leading-tight">530</span>
+<span class="text-[8px] text-gray-400">kcal</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mock Bottom Navigation Bar -->
+<div class="mt-4 pt-3 border-t border-[#1a2620] flex items-center justify-around text-[9px] font-semibold text-gray-400">
+<div class="flex flex-col items-center text-brand-green">
+<svg class="w-4 h-4 mb-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                  </div>
+<div class="flex flex-col items-center hover:text-white">
+<svg class="w-4 h-4 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Diary
+                  </div>
+<div class="flex flex-col items-center hover:text-white">
+<svg class="w-4 h-4 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Goals
+                  </div>
+<div class="flex flex-col items-center hover:text-white">
+<svg class="w-4 h-4 mb-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg>
+                    More
+                  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Features Section -->
+<section class="py-20 md:py-28 bg-brand-dark/50 border-t border-brand-border/40 relative" id="features">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-16">
+<p class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-muted uppercase mb-3">
+            Everything You Need
+          </p>
+<h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">
+            Built For <span class="text-brand-green">Real Progress</span>
+</h2>
+</div>
+<!-- 2x2 Feature Grid on Desktop -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+<!-- Feature Card 1: Track Your Food -->
+<div class="group p-8 rounded-2xl bg-brand-card/90 border border-brand-border hover:border-brand-green/40 hover:bg-[#16211c] transition-all duration-300 shadow-sm flex items-start gap-6">
+<div class="w-14 h-14 rounded-2xl bg-brand-green/10 border border-brand-green/20 text-brand-green flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<!-- Fork & Knife Icon -->
+<svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+<path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-brand-green transition-colors">Track Your Food</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                Log what you eat with our easy food search, instant barcode scanner, and extensive verified nutritional database.
+              </p>
+</div>
+</div>
+<!-- Feature Card 2: Know Your Numbers -->
+<div class="group p-8 rounded-2xl bg-brand-card/90 border border-brand-border hover:border-brand-green/40 hover:bg-[#16211c] transition-all duration-300 shadow-sm flex items-start gap-6">
+<div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<!-- Flame Icon -->
+<svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+<path d="M12 23c6.075 0 11-4.925 11-11 0-4.04-2.18-7.58-5.44-9.52a.75.75 0 00-1.06.84c.57 2.45-.19 4.3-1.4 5.51-.76.76-1.63 1.1-2.48 1.1-.38 0-.75-.07-1.12-.22C9.53 8.9 9.38 6.4 10.97 3.33a.75.75 0 00-.97-.99C6.44 3.95 1 8.28 1 12c0 6.075 4.925 11 11 11z"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-brand-green transition-colors">Know Your Numbers</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                Track calories, protein, carbs and fats easily with adaptive daily targets calibrated to your body metrics.
+              </p>
+</div>
+</div>
+<!-- Feature Card 3: See Your Progress -->
+<div class="group p-8 rounded-2xl bg-brand-card/90 border border-brand-border hover:border-brand-green/40 hover:bg-[#16211c] transition-all duration-300 shadow-sm flex items-start gap-6">
+<div class="w-14 h-14 rounded-2xl bg-brand-green/10 border border-brand-green/20 text-brand-green flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<!-- Bar Chart Icon -->
+<svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+<path d="M4 19h16v2H2V3h2v16zm4-8h3v6H8v-6zm5-6h3v12h-3V5zm5 4h3v8h-3V9z"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-brand-green transition-colors">See Your Progress</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                Visualize your nutrition, weight trends, and gym performance to stay disciplined, motivated, and consistent.
+              </p>
+</div>
+</div>
+<!-- Feature Card 4: Powered by AI -->
+<div class="group p-8 rounded-2xl bg-brand-card/90 border border-brand-border hover:border-brand-green/40 hover:bg-[#16211c] transition-all duration-300 shadow-sm flex items-start gap-6">
+<div class="w-14 h-14 rounded-2xl bg-brand-green/10 border border-brand-green/20 text-brand-green flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<!-- Sparkles / AI Icon -->
+<svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+<path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5z"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-brand-green transition-colors">Powered by AI</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                Get smart suggestions, intelligent meal breakdowns, macro adjustments, and personalized nutrition guidance.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Features Section -->
+<!-- BEGIN: Goals Section -->
+<section class="py-20 md:py-28 relative" id="goals">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-16">
+<p class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-muted uppercase mb-3">
+            Made For Your Goal
+          </p>
+<h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">
+            Whatever Your <span class="text-brand-green">Fitness Goal</span>
+</h2>
+</div>
+<!-- 4 Goals Card Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Lean Bulk -->
+<div class="group relative rounded-2xl overflow-hidden border border-brand-border bg-brand-card h-96 flex flex-col justify-end p-6 hover:border-brand-green transition-all duration-300 transform hover:-translate-y-1">
+<!-- Background Image with Gradient Overlay -->
+<img alt="Lean Bulk Fitness Goal" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx839i9r96hTOh8zLJPuYR1nrYvd9WvmtlPJc-0jOGv0KvYkpRT8r6XuZQPO9OMgePiNHxQklNqWxejua7ZkVQuVWdKsMhqOD-iwxRlE4hAMBQPkRXi4L4eh-ItHCBhYSeOigM4ju0tuOcKAZQ1esXFODs4-8N4llSoTEjjZJbYcXxYNQOSDhGv5mFdq3wyS-4GX1xaM1gOr8CADh8QvDSkFtQTioB27zX9IlRGzzV09wAVjHFnQEQ">
+<div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent"></div>
+<div class="relative z-10">
+<span class="inline-block px-2.5 py-1 rounded bg-brand-green/20 text-brand-green text-[10px] font-bold tracking-widest uppercase mb-2">Phase 01</span>
+<h3 class="text-2xl font-extrabold text-white mb-1.5 uppercase tracking-wide">Lean Bulk</h3>
+<p class="text-gray-300 text-xs sm:text-sm leading-snug">
+                Build muscle with controlled calories and progressive calorie surpluses.
+              </p>
+</div>
+</div>
+<!-- Card 2: Cutting -->
+<div class="group relative rounded-2xl overflow-hidden border border-brand-border bg-brand-card h-96 flex flex-col justify-end p-6 hover:border-brand-green transition-all duration-300 transform hover:-translate-y-1">
+<img alt="Cutting Fitness Goal" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoDnDX3lz3w0MI61rfsB11Pee1doDhPK7utPSfCl6R0ruYFG4XIbVyDI7m1leYbgK5gzHk84NMOGFAIitVrvZfs1beN-Kj2JIImywK3zHx5hIe-lGzMsXn7V08PoBjQWeU1apxGgjZlRrAPpZQjvmQSL1YXWYYinmkFMg6mZaOOKD5Dcoh4q7ehfKO-CmkIA2KZJi0E-ZpdK3udxjgZLoBjSvUJT1eGX5p29X_8MhTR2nnVI_MAlWA">
+<div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent"></div>
+<div class="relative z-10">
+<span class="inline-block px-2.5 py-1 rounded bg-brand-green/20 text-brand-green text-[10px] font-bold tracking-widest uppercase mb-2">Phase 02</span>
+<h3 class="text-2xl font-extrabold text-white mb-1.5 uppercase tracking-wide">Cutting</h3>
+<p class="text-gray-300 text-xs sm:text-sm leading-snug">
+                Stay on track with your calorie target and shred body fat without muscle loss.
+              </p>
+</div>
+</div>
+<!-- Card 3: Maintenance -->
+<div class="group relative rounded-2xl overflow-hidden border border-brand-border bg-brand-card h-96 flex flex-col justify-end p-6 hover:border-brand-green transition-all duration-300 transform hover:-translate-y-1">
+<img alt="Maintenance Fitness Goal" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMH7k9RdO1zJ4riFNnSN-1agXJB-v6hZ1J9Gdq8chRcH8JkNAr7LM8sJ-zl70HWm1gRrzEY4GliUtCK3mLpeZCN8ujRuulSlI-jlkrYMiOuEVwvj7_eKVNOO-7sasRWWkKaDPb0CSLhbJqGuNTVQ0prtnGpI49YXwKUWZH8xErSiGZ1CoP2X4M9cg4ONClje1MCnYmOrwN2KaZuqcqI2UtHmL7MLBUkJRQfyU78bjkE1perQN5MJ3C">
+<div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent"></div>
+<div class="relative z-10">
+<span class="inline-block px-2.5 py-1 rounded bg-brand-green/20 text-brand-green text-[10px] font-bold tracking-widest uppercase mb-2">Phase 03</span>
+<h3 class="text-2xl font-extrabold text-white mb-1.5 uppercase tracking-wide">Maintenance</h3>
+<p class="text-gray-300 text-xs sm:text-sm leading-snug">
+                Keep your nutrition balanced, fuel healthy habits, and sustain your physique.
+              </p>
+</div>
+</div>
+<!-- Card 4: Muscle Gain -->
+<div class="group relative rounded-2xl overflow-hidden border border-brand-border bg-brand-card h-96 flex flex-col justify-end p-6 hover:border-brand-green transition-all duration-300 transform hover:-translate-y-1">
+<img alt="Muscle Gain Fitness Goal" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNTkOsKXBtJa4_F0kr4l81Gej2li_Jgja2kU0BwJ9MnK7kv7BA8gMnX-VLZ_RbIAczqtFWYMVcQEUvz9ZAj1mJ7BGt0FO7ExpV3GYfYVmEVKqoUH2B8jEf6AIx8wTsIPYbfqckLyCMUN346-BaGMUwa5j5ywJ5wyhoehzzc1shESrwdrJWVkh51ybluhjvrJvlq4Ue3PLX5Sur0xCImYigkfw0RIKz_a841l6EZ3DckDUCG3NLBDwF">
+<div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent"></div>
+<div class="relative z-10">
+<span class="inline-block px-2.5 py-1 rounded bg-brand-green/20 text-brand-green text-[10px] font-bold tracking-widest uppercase mb-2">Phase 04</span>
+<h3 class="text-2xl font-extrabold text-white mb-1.5 uppercase tracking-wide">Muscle Gain</h3>
+<p class="text-gray-300 text-xs sm:text-sm leading-snug">
+                Focus on high protein intake and consistent nutrient timing for maximum hypertrophy.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Goals Section -->
+<!-- BEGIN: Final CTA Banner -->
+<section class="py-16 md:py-24 relative overflow-hidden" id="download">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Call to Action Container Box -->
+<div class="relative rounded-3xl bg-gradient-to-b from-[#141f1a] to-[#0c1310] border border-brand-border/90 p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden">
+<!-- Subtle corner neon glow -->
+<div class="absolute -bottom-20 -right-20 w-80 h-80 bg-brand-green/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-between">
+<!-- Left Info Column -->
+<div class="lg:col-span-7">
+<p class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-muted uppercase mb-3">
+                It's Time To Take Control
+              </p>
+<h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white mb-6">
+                Download <span class="text-brand-green">GymNutrition</span>
+</h2>
+<!-- Benefits List -->
+<div class="space-y-3.5 text-base sm:text-lg font-semibold text-gray-200">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-brand-green text-black flex items-center justify-center font-bold text-xs">
+                    ✓
+                  </div>
+<span class="">100% Free Forever</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-brand-green text-black flex items-center justify-center font-bold text-xs">
+                    ✓
+                  </div>
+<span class="">No Subscription or Paywalls</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-brand-green text-black flex items-center justify-center font-bold text-xs">
+                    ✓
+                  </div>
+<span class="">No Credit Card Required</span>
+</div>
+</div>
+</div>
+<!-- Right CTA Button Column -->
+<div class="lg:col-span-5 flex flex-col items-start lg:items-end text-left lg:text-right">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-green hover:bg-brand-neon text-black font-extrabold text-base tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 shadow-glow-lg active:scale-95 group" href="#top">
+<!-- Android Icon -->
+<svg class="w-6 h-6 fill-black" viewBox="0 0 24 24">
+<path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9996.4482.9996.9993.0001.5511-.4486.9997-.9996.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4144 13.8533 8.125 12 8.125s-3.5902.2894-5.1368.8247L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.152 4.5676l1.9972 3.4592C2.6889 10.967 0 14.1565 0 18.0002h24c0-3.8437-2.6889-7.0332-6.1185-8.6788"></path>
+</svg>
+<span class="">Download for Android</span>
+<svg class="w-5 h-5 text-black transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<p class="mt-4 text-xs text-gray-400 font-medium">
+                Start tracking your nutrition today.<br class="hidden sm:inline">
+                It's free and always will be.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Final CTA Banner -->
+</main>
+
+<section id="about" class="py-16 md:py-20 border-t border-brand-border/40">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <p class="text-xs font-bold tracking-[0.25em] text-brand-muted uppercase mb-3">About GymNutrition</p>
+    <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight mb-5">
+      Nutrition tracking without the <span class="text-brand-green">complication.</span>
+    </h2>
+    <p class="text-gray-400 leading-relaxed max-w-2xl mx-auto">
+      GymNutrition is a free Android nutrition companion designed to help you track food,
+      calories, protein and progress in one simple place.
+    </p>
+  </div>
+</section>
+
+<!-- BEGIN: Footer -->
+<footer class="bg-brand-black border-t border-brand-border/60 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8">
+<!-- Footer Branding -->
+<div class="flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-brand-card border border-brand-border flex items-center justify-center text-brand-green">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+<path d="M6 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-1 11H4V8h1v8zm15-11h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-1 11h-1V8h1v8zM8 11h8v2H8z"></path>
+</svg>
+</div>
+<div>
+<span class="text-xl font-extrabold tracking-tight block leading-none">Gym<span class="text-brand-green">Nutrition</span></span>
+<span class="text-[8px] font-bold tracking-[0.25em] text-brand-muted uppercase block mt-1">Fuel Your Goals</span>
+</div>
+</div>
+<!-- Social Media Links -->
+<div class="flex items-center gap-6 text-gray-400">
+<!-- Instagram -->
+<a aria-label="Instagram" class="hover:text-brand-green transition-colors" href="#top">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+</svg>
+</a>
+<!-- YouTube -->
+<a aria-label="YouTube" class="hover:text-brand-green transition-colors" href="#top">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+</svg>
+</a>
+<!-- X (Twitter) -->
+<a aria-label="X" class="hover:text-brand-green transition-colors" href="#top">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+</svg>
+</a>
+</div>
+</div>
+<!-- Links & Copyright -->
+<div class="mt-8 pt-8 border-t border-brand-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-medium">
+<div class="flex items-center gap-6">
+<a class="hover:text-gray-300 transition-colors" href="#top">About</a>
+<a class="hover:text-gray-300 transition-colors" href="#top">Privacy</a>
+<a class="hover:text-gray-300 transition-colors" href="#top">Terms</a>
+<a class="hover:text-gray-300 transition-colors" href="#top">Contact</a>
+</div>
+<div class="">
+          © 2026 GymNutrition. All rights reserved.
+        </div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+
+
+
+<script>
+(() => {
+  const button = document.getElementById('menuButton');
+  const menu = document.getElementById('mobileMenu');
+  const openIcon = document.getElementById('menuOpenIcon');
+  const closeIcon = document.getElementById('menuCloseIcon');
+
+  if (button && menu) {
+    button.addEventListener('click', () => {
+      const open = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!open));
+      menu.classList.toggle('hidden', open);
+      openIcon.classList.toggle('hidden', !open);
+      closeIcon.classList.toggle('hidden', open);
+    });
+
+    menu.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        button.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+  }
+
+  // Lightweight reveal animation; no framework required.
+  const items = document.querySelectorAll('section, .bg-card-gradient');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  items.forEach(item => {
+    item.classList.add('reveal-on-scroll');
+    observer.observe(item);
+  });
+})();
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal-on-scroll { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal-on-scroll { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+
+</body></html>
